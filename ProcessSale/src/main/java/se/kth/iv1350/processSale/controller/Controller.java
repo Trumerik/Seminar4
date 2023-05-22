@@ -36,7 +36,11 @@ public class Controller {
         this.sale = null;
     }
 
-
+    /**
+     * Sets the inventory system to the specified inventory system type.
+     * 
+     * @param inventorySystemType
+     */
     public void setInventorySystem(String inventorySystemType) {
         this.inventorySystem = inventorySystemFactory.getInventorySystem(inventorySystemType);
     }
@@ -103,6 +107,11 @@ public class Controller {
         this.printer.printReceipt(receipt);
     }
 
+    /**
+     * Adds an observer to the accounting system.
+     * 
+     * @param observer
+     */
     public void addRevenueObserver(RevenueObserver observer) {
         this.accountingSystem.addRevenueObserver(observer);
     }

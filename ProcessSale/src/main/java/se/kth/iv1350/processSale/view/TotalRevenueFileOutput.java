@@ -15,7 +15,6 @@ public class TotalRevenueFileOutput implements RevenueObserver {
     private PrintWriter logFile;
     float totalRevenue = 0;
 
-
     /**
      * Constructor for TotalRevenueFileOutput
      */

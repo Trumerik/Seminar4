@@ -8,9 +8,7 @@ import se.kth.iv1350.processSale.integration.ExternalInventorySystem;
 import se.kth.iv1350.processSale.integration.InventorySystem;
 import se.kth.iv1350.processSale.integration.ItemNotFoundException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Sale class represent the sale that is initiated by the cashier when a customer arrives 

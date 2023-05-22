@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.model.RevenueObserver;
+
 /**
  * The class TotalRevenueView shows the total income of the sales on the user interface
  */

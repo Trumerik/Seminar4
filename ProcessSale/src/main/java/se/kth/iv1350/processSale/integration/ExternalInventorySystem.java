@@ -52,5 +52,6 @@ public class ExternalInventorySystem implements InventorySystem{
      * 
      * @param receipt the {@link Receipt} to be handled by inventory system
      */
+    @Override
     public void updateInventorySystem(Receipt receipt) {}
 }
