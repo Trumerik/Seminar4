@@ -19,6 +19,7 @@ public class View {
     private PrettyPrinter prettyPrinter;
     private ErrorMessageHandler errorMessageHandler;
     private LogHandler logger;
+    
     /**
      * Constructor for the View class with the specified {@link Controller} class as a parameter.
      * 
@@ -42,7 +43,7 @@ public class View {
      * 
      * Here is an explination of the mock user interface system calls:
      * 1. Cashier starts the sale and adds revenue observers.
-     * 2. Cashier enters the item identifier "databaseFailure" and the system returns error message.
+     * 2. Cashier enters the item identifier "mjöl" and the system returns error message.
      * 3. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
      * 4. Cashier enters the item identifier "honung" and the system returns the current sale status.
      * 5. Cashier ends the sale.

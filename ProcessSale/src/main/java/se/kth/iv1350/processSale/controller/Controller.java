@@ -96,6 +96,9 @@ public class Controller {
         this.printer.printReceipt(receipt);
     }
 
+    /**
+     * Adds the an observer to the list of observers. 
+     */
     public void addRevenueObserver(RevenueObserver observer) {
         this.accountingSystem.addRevenueObserver(observer);
     }

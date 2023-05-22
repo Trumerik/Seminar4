@@ -1,4 +1,5 @@
 package se.kth.iv1350.processSale.integration;
+
 /**
  *  This exception is thrown when an item is not found.
  */

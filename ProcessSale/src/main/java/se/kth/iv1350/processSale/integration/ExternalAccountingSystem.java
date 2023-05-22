@@ -12,6 +12,7 @@ import se.kth.iv1350.processSale.model.RevenueObserver;
  */
 public class ExternalAccountingSystem {
     private List<RevenueObserver> revenueObservers;
+    
     /**
      * Creates a new instance of the external accounting system.
      */
