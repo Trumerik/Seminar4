@@ -42,7 +42,7 @@ public class View {
      * We also have printouts directly the System.out when the something is returned by the controller.
      * 
      * Here is an explination of the mock user interface system calls:
-     * 1. Cashier starts the sale and adds revenue observers.
+     * 1. Cashier starts the sale.
      * 2. Cashier enters the item identifier "mjöl" and the system returns error message.
      * 3. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
      * 4. Cashier enters the item identifier "honung" and the system returns the current sale status.
@@ -56,8 +56,6 @@ public class View {
      */
     public void systemCalls() {
         this.controller.startSale();
-        this.controller.addRevenueObserver(new TotalRevenueView());
-        this.controller.addRevenueObserver(new TotalRevenueFileOutput());
         
         String identifier;
         CurrentSaleStatusDTO currentSaleStatus;

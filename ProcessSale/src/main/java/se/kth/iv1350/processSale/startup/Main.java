@@ -3,6 +3,8 @@ package se.kth.iv1350.processSale.startup;
 import se.kth.iv1350.processSale.controller.Controller;
 import se.kth.iv1350.processSale.integration.ReceiptPrinter;
 import se.kth.iv1350.processSale.view.View; 
+import se.kth.iv1350.processSale.view.TotalRevenueFileOutput;
+import se.kth.iv1350.processSale.view.TotalRevenueView;
 
 /**
  * @author Erik Hellman
@@ -17,7 +19,9 @@ import se.kth.iv1350.processSale.view.View;
 public class Main {
     public static void main(String[] args) {
         ReceiptPrinter printer = new ReceiptPrinter();
-        Controller controller = new Controller(printer);
+        TotalRevenueView totalRevenueView = new TotalRevenueView();
+        TotalRevenueFileOutput totalRevenueFileOutput = new TotalRevenueFileOutput();
+        Controller controller = new Controller(printer, totalRevenueView, totalRevenueFileOutput);
         View view = new View(controller);
         view.systemCalls();
     }

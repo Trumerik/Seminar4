@@ -4,7 +4,7 @@ import se.kth.iv1350.processSale.model.RevenueObserver;
 /**
  * The class TotalRevenueView shows the total income of the sales on the user interface
  */
-class TotalRevenueView implements RevenueObserver{
+public class TotalRevenueView implements RevenueObserver{
     float totalRevenue = 0;
 
     /**

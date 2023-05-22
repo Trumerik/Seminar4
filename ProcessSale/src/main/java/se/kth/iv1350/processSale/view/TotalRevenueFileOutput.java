@@ -14,8 +14,7 @@ public class TotalRevenueFileOutput implements RevenueObserver {
     private static final String LOG_FILE_NAME = "totalRevenue-log.txt";
     private PrintWriter logFile;
     float totalRevenue = 0;
-
-
+    
     /**
      * Constructor for TotalRevenueFileOutput
      */

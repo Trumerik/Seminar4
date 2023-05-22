@@ -7,9 +7,10 @@ import se.kth.iv1350.processSale.model.Receipt;
 import se.kth.iv1350.processSale.model.RevenueObserver;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
+import se.kth.iv1350.processSale.view.TotalRevenueFileOutput;
+import se.kth.iv1350.processSale.view.TotalRevenueView;
 import se.kth.iv1350.processSale.integration.DatabaseFailureException;
 import se.kth.iv1350.processSale.integration.ExternalAccountingSystem;
-
 
 /**
  * The controller works as a middle-man between the view and the model as well as the
@@ -27,10 +28,12 @@ public class Controller {
      * 
      * @param printer the printer print the receipt.
      */
-    public Controller(ReceiptPrinter printer) {
+    public Controller(ReceiptPrinter printer, TotalRevenueView totalRevenueView, TotalRevenueFileOutput totalRevenueFileOutput) {
         this.printer = printer;
         this.inventorySystem = new ExternalInventorySystem();
         this.accountingSystem = new ExternalAccountingSystem();
+        this.accountingSystem.addRevenueObserver(totalRevenueView);
+        this.accountingSystem.addRevenueObserver(totalRevenueFileOutput);
         this.sale = null;
     }
 
