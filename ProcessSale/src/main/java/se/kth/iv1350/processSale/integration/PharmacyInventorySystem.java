@@ -8,20 +8,20 @@ import se.kth.iv1350.processSale.model.dto.ItemDescriptionDTO;
  * The external inventory system contains all item description informations. Calls are only made 
  * to the class from the {@link Controller}
  */
-public class ExternalInventorySystem implements InventorySystem{
+public class PharmacyInventorySystem implements InventorySystem{
     private ArrayList<ItemDescriptionDTO> mockDatabase;
     
     /**
      * Creates a new instance of the {@link ExternalInventorySystem}, creating and adding item
      * descriptions to a mock database, along with its quantity in inventory.
      */
-    public ExternalInventorySystem(){
+    public PharmacyInventorySystem(){
         this.mockDatabase = new ArrayList<ItemDescriptionDTO>();
-        mockDatabase.add(new ItemDescriptionDTO(3.90f, "äpple", 0.12f));
-        mockDatabase.add(new ItemDescriptionDTO(15.50f, "mjöl", 0.12f));
-        mockDatabase.add(new ItemDescriptionDTO(80f, "honung", 0.06f));
-        mockDatabase.add(new ItemDescriptionDTO(4.95f, "mandarin", 0.25f));
-        mockDatabase.add(new ItemDescriptionDTO(27.95f, "ananas", 0.25f));
+        mockDatabase.add(new ItemDescriptionDTO(3.90f, "Loratadin", 0.12f));
+        mockDatabase.add(new ItemDescriptionDTO(15.50f, "Plåster", 0.12f));
+        mockDatabase.add(new ItemDescriptionDTO(80f, "Nässpray", 0.06f));
+        mockDatabase.add(new ItemDescriptionDTO(4.95f, "Ibuprofen", 0.25f));
+        mockDatabase.add(new ItemDescriptionDTO(27.95f, "Hudkräm", 0.25f));
     }
 
     /**

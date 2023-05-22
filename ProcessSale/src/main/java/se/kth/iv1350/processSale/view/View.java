@@ -15,10 +15,12 @@ import se.kth.iv1350.processSale.util.LogHandler;
  * flow (and the one alternate flow required) described in the seminar instructions. 
  */
 public class View {
+    private static final String SELECTED_ITEMS_TYPE = "Pharmacy";
     private Controller controller;
     private PrettyPrinter prettyPrinter;
     private ErrorMessageHandler errorMessageHandler;
     private LogHandler logger;
+    
     /**
      * Constructor for the View class with the specified {@link Controller} class as a parameter.
      * 
@@ -54,6 +56,7 @@ public class View {
      * 11. Cashier enters the amount paid by the customer and finally the receipt is printed.
      */
     public void systemCalls() {
+        this.controller.setInventorySystem(SELECTED_ITEMS_TYPE);
         this.controller.startSale();
         this.controller.addRevenueObserver(new TotalRevenueView());
         this.controller.addRevenueObserver(new TotalRevenueFileOutput());
@@ -62,15 +65,15 @@ public class View {
         CurrentSaleStatusDTO currentSaleStatus;
         
         try{
-            identifier = "mjöl";
+            identifier = "Loratadin";
             currentSaleStatus = this.controller.entersItemIdentifier(identifier);
             this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
         
-            identifier = "mandarin";
+            identifier = "Loratadin";
             currentSaleStatus = this.controller.entersItemIdentifier(identifier);
             this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
 
-            identifier = "honung";
+            identifier = "Plåster";
             currentSaleStatus = this.controller.entersItemIdentifier(identifier);
             this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
 
@@ -83,26 +86,6 @@ public class View {
             this.prettyPrinter.printChange(change);
 
             this.controller.printReceipt();
-
-            this.controller.startSale();
-
-            identifier = "mjöl";
-            currentSaleStatus = this.controller.entersItemIdentifier(identifier);
-            this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
-        
-            identifier = "mandarin";
-            currentSaleStatus = this.controller.entersItemIdentifier(identifier);
-            this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
-
-            totalPrice = this.controller.endSale();
-            this.prettyPrinter.printTotalPrice(totalPrice);
-            
-            payment = 100f;
-            change = this.controller.entersPayment(payment);
-            this.prettyPrinter.printChange(change);
-
-            this.controller.printReceipt();
-
         } catch (ItemNotFoundException e) {
             this.errorMessageHandler.showErrorMsg(e.getMessage());
         } catch (Exception e){

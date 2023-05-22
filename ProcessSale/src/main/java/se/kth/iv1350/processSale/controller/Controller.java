@@ -1,6 +1,8 @@
 package se.kth.iv1350.processSale.controller;
 
 import se.kth.iv1350.processSale.integration.ExternalInventorySystem;
+import se.kth.iv1350.processSale.integration.InventorySystem;
+import se.kth.iv1350.processSale.integration.InventorySystemFactory;
 import se.kth.iv1350.processSale.integration.ItemNotFoundException;
 import se.kth.iv1350.processSale.integration.ReceiptPrinter;
 import se.kth.iv1350.processSale.model.Receipt;
@@ -16,10 +18,11 @@ import se.kth.iv1350.processSale.integration.ExternalAccountingSystem;
  * external systems. All calls to the model pass through here.
  */
 public class Controller {
-    private ExternalInventorySystem inventorySystem;
+    private InventorySystem inventorySystem;
     private ExternalAccountingSystem accountingSystem;
     private Sale sale;
     private ReceiptPrinter printer;
+    private InventorySystemFactory inventorySystemFactory = InventorySystemFactory.getFactory(); 
 
     /**
      * Creates a new instance of the controller with the specified {@link Printer} class as a parameter.
@@ -29,9 +32,13 @@ public class Controller {
      */
     public Controller(ReceiptPrinter printer) {
         this.printer = printer;
-        this.inventorySystem = new ExternalInventorySystem();
         this.accountingSystem = new ExternalAccountingSystem();
         this.sale = null;
+    }
+
+
+    public void setInventorySystem(String inventorySystemType) {
+        this.inventorySystem = inventorySystemFactory.getInventorySystem(inventorySystemType);
     }
 
     /**

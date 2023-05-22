@@ -5,6 +5,7 @@ import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
 import se.kth.iv1350.processSale.model.dto.ItemDescriptionDTO;
 import se.kth.iv1350.processSale.integration.DatabaseFailureException;
 import se.kth.iv1350.processSale.integration.ExternalInventorySystem;
+import se.kth.iv1350.processSale.integration.InventorySystem;
 import se.kth.iv1350.processSale.integration.ItemNotFoundException;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Sale {
     private LocalDateTime timeOfSale;
     private Receipt receipt;
     private HashMap<String, ItemDescriptionDTO> seenItemsCache;
-    private ExternalInventorySystem inventorySystem;
+    private InventorySystem inventorySystem;
     
     /**
      * Constructor for the Sale class with the specified {@link ExternalInventorySystem} 
@@ -29,7 +30,7 @@ public class Sale {
      * 
      * @param inventorySystem The external inventory system.
      */
-    public Sale(ExternalInventorySystem inventorySystem) {
+    public Sale(InventorySystem inventorySystem) {
         setTimeOfSale();
         this.receipt = new Receipt(this.timeOfSale);
         this.inventorySystem = inventorySystem;

@@ -15,6 +15,7 @@ import se.kth.iv1350.processSale.view.View;
  *  @param args The command-line arguments for the program.
  */
 public class Main {
+    
     public static void main(String[] args) {
         ReceiptPrinter printer = new ReceiptPrinter();
         Controller controller = new Controller(printer);
