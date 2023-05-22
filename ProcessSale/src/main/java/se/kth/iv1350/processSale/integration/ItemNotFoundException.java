@@ -11,7 +11,7 @@ public class ItemNotFoundException extends Exception{
      * @param identifier The identifier that was not found.
      */
     public ItemNotFoundException(String identifier) {
-        super("Unable to find the identifier: " + identifier + " in the inventory system.");
+        super("Item \"" + identifier + "\" was not found, verify identifier and try again.");
         this.identifierNotFound = identifier;
     }
     

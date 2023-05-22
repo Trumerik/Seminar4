@@ -5,8 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 /**
  * The class LogHandler logs exceptions and prints them to a file
@@ -31,19 +29,8 @@ public class LogHandler {
      * @param exception The exception that will be logged.
      */
     public void logException(Exception exception){
-        StringBuilder logsMsgBuilder = new StringBuilder();
-        logsMsgBuilder.append(createTime());
-        logsMsgBuilder.append(", Exception was thrown: "); 
-        logsMsgBuilder.append(exception.getMessage());
-        logFile.println(logsMsgBuilder);
+        logFile.println(LocalDateTime.now());
+        logFile.println("- Exception thrown: " + exception.getMessage());
         exception.printStackTrace(logFile);
-    }
-  
-    private String createTime(){
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.
-            ofLocalizedDateTime(FormatStyle.MEDIUM);
-
-        return now.format(formatter);
     }
 }

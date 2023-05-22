@@ -33,7 +33,6 @@ public class View {
         } catch (IOException e) {
             writeToLogAndUI("Failed to connect with log system", e);
         }
-        systemCalls();
     }
 
     /**
@@ -42,28 +41,26 @@ public class View {
      * We also have printouts directly the System.out when the something is returned by the controller.
      * 
      * Here is an explination of the mock user interface system calls:
-     * 1. Cashier starts the sale.
-     * 2. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
+     * 1. Cashier starts the sale and adds revenue observers.
+     * 2. Cashier enters the item identifier "databaseFailure" and the system returns error message.
      * 3. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
-     * 4. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
-     * 5. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
-     * 6. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
-     * 7. Cashier enters the item identifier "honung" and the system returns the current sale status.
-     * 8. Cashier enters the item identifier "äpple" and the system returns the current sale status.
-     * 9. Cashier enters the item identifier "ananas" and the system returns the current sale status.
-     * 10. Cashier enters the item identifier "äpple" and the system returns the current sale status.
-     * 11. Cashier ends the sale.
-     * 12. Cashier enters the amount paid by the customer and finally the receipt is printed.
+     * 4. Cashier enters the item identifier "honung" and the system returns the current sale status.
+     * 5. Cashier ends the sale.
+     * 6. Cashier enters the amount paid by the customer and finally the receipt is printed.
+     * 7. Cashier starts second sale
+     * 8. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
+     * 9. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
+     * 10. Cashier ends the sale.
+     * 11. Cashier enters the amount paid by the customer and finally the receipt is printed.
      */
-    private void systemCalls() {
+    public void systemCalls() {
         this.controller.startSale();
-        this.controller.addReceiptObserver(new TotalRevenueView());
-        this.controller.addReceiptObserver(new TotalRevenueFileOutput());
+        this.controller.addRevenueObserver(new TotalRevenueView());
+        this.controller.addRevenueObserver(new TotalRevenueFileOutput());
         
         String identifier;
         CurrentSaleStatusDTO currentSaleStatus;
         
-        //test of try catch on one system operation, test on each or one test on all? Ask teacher
         try{
             identifier = "mjöl";
             currentSaleStatus = this.controller.entersItemIdentifier(identifier);
@@ -97,7 +94,6 @@ public class View {
             currentSaleStatus = this.controller.entersItemIdentifier(identifier);
             this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
 
-
             totalPrice = this.controller.endSale();
             this.prettyPrinter.printTotalPrice(totalPrice);
             
@@ -108,7 +104,7 @@ public class View {
             this.controller.printReceipt();
 
         } catch (ItemNotFoundException e) {
-            this.errorMessageHandler.showErrorMsg("Item " + e.getIdentifierNotFound() + " was not found");
+            this.errorMessageHandler.showErrorMsg(e.getMessage());
         } catch (Exception e){
             writeToLogAndUI("Failed to add item", e);
         }

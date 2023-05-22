@@ -18,6 +18,7 @@ public class Main {
     public static void main(String[] args) {
         ReceiptPrinter printer = new ReceiptPrinter();
         Controller controller = new Controller(printer);
-        new View(controller);
+        View view = new View(controller);
+        view.systemCalls();
     }
 }

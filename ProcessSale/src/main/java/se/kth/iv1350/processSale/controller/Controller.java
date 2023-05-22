@@ -4,7 +4,7 @@ import se.kth.iv1350.processSale.integration.ExternalInventorySystem;
 import se.kth.iv1350.processSale.integration.ItemNotFoundException;
 import se.kth.iv1350.processSale.integration.ReceiptPrinter;
 import se.kth.iv1350.processSale.model.Receipt;
-import se.kth.iv1350.processSale.model.ReceiptObserver;
+import se.kth.iv1350.processSale.model.RevenueObserver;
 import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
 import se.kth.iv1350.processSale.integration.DatabaseFailureException;
@@ -96,8 +96,8 @@ public class Controller {
         this.printer.printReceipt(receipt);
     }
 
-    public void addReceiptObserver(ReceiptObserver observer) {
-        this.accountingSystem.addReceiptObserver(observer);
+    public void addRevenueObserver(RevenueObserver observer) {
+        this.accountingSystem.addRevenueObserver(observer);
     }
 
 }

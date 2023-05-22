@@ -4,19 +4,19 @@ import java.util.List;
 import java.util.ArrayList;
 
 import se.kth.iv1350.processSale.model.Receipt;
-import se.kth.iv1350.processSale.model.ReceiptObserver;
+import se.kth.iv1350.processSale.model.RevenueObserver;
 
 /**
  * The external accounting system contains accounting information. Calls are only made 
  * to the class from the controller
  */
 public class ExternalAccountingSystem {
-    private List<ReceiptObserver> receiptObservers;
+    private List<RevenueObserver> revenueObservers;
     /**
      * Creates a new instance of the external accounting system.
      */
-    public ExternalAccountingSystem(){
-        this.receiptObservers = new ArrayList<>();
+    public ExternalAccountingSystem() {
+        this.revenueObservers = new ArrayList<>();
     }
     
     /**
@@ -29,9 +29,9 @@ public class ExternalAccountingSystem {
         notifyObservers(receipt);
     }
 
-    private void notifyObservers(Receipt receipt){
-        for (ReceiptObserver observer : receiptObservers){
-            observer.newRevenue(receipt.getTotalPrice());
+    private void notifyObservers(Receipt receipt) {
+        for (RevenueObserver observer : revenueObservers){
+            observer.showRevenue(receipt.getTotalPrice());
         }
     }
 
@@ -40,7 +40,7 @@ public class ExternalAccountingSystem {
      * 
      * @param observer the observer to be added
      */
-    public void addReceiptObserver(ReceiptObserver observer){
-        receiptObservers.add(observer);
+    public void addRevenueObserver(RevenueObserver observer) {
+        revenueObservers.add(observer);
     }
 }
