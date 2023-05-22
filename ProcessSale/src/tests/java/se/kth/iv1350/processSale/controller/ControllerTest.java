@@ -5,7 +5,11 @@ import org.junit.*;
 import se.kth.iv1350.processSale.integration.ItemNotFoundException;
 import se.kth.iv1350.processSale.integration.ReceiptPrinter;
 import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
+import se.kth.iv1350.processSale.view.TotalRevenueFileOutput;
+import se.kth.iv1350.processSale.view.TotalRevenueView;
+
 import static org.junit.Assert.assertEquals;
+
 
 /**
  * Tests on the methods belonging to the Controller class. Tests on the set/gets methods
@@ -22,8 +26,11 @@ public class ControllerTest {
      */
     @Before
     public void setUp() throws ItemNotFoundException, OperationFailedException {
-        receiptPrinter = new ReceiptPrinter();
-        controller = new Controller(receiptPrinter);
+        this.receiptPrinter = new ReceiptPrinter();
+        TotalRevenueView totalRevenueView = new TotalRevenueView();
+        TotalRevenueFileOutput totalRevenueFileOutput = new TotalRevenueFileOutput();
+        controller = new Controller(receiptPrinter, totalRevenueView, totalRevenueFileOutput);
+        this.controller.setInventorySystem("Normal");
         controller.startSale();
         this.cssDTO = controller.entersItemIdentifier("mandarin");
     }
@@ -86,7 +93,10 @@ public class ControllerTest {
     @Test(expected = OperationFailedException.class)
     public void testOperationFailedException() throws ItemNotFoundException, OperationFailedException{
         receiptPrinter = new ReceiptPrinter();
-        controller = new Controller(receiptPrinter);
+        TotalRevenueView totalRevenueView = new TotalRevenueView();
+        TotalRevenueFileOutput totalRevenueFileOutput = new TotalRevenueFileOutput();
+        controller = new Controller(receiptPrinter, totalRevenueView, totalRevenueFileOutput);
+        controller.setInventorySystem("Normal");
         controller.startSale();
         this.cssDTO = controller.entersItemIdentifier("databaseFailure");
     }
@@ -98,7 +108,10 @@ public class ControllerTest {
     @Test(expected = ItemNotFoundException.class)
     public void testItemNotFoundException() throws ItemNotFoundException, OperationFailedException {    
         receiptPrinter = new ReceiptPrinter();
-        controller = new Controller(receiptPrinter);
+        TotalRevenueView totalRevenueView = new TotalRevenueView();
+        TotalRevenueFileOutput totalRevenueFileOutput = new TotalRevenueFileOutput();
+        controller = new Controller(receiptPrinter, totalRevenueView, totalRevenueFileOutput);
+        controller.setInventorySystem("Normal");
         controller.startSale();
         this.cssDTO = controller.entersItemIdentifier("Invalid");
     }

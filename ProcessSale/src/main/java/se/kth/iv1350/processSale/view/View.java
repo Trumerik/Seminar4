@@ -58,8 +58,6 @@ public class View {
     public void systemCalls() {
         this.controller.setInventorySystem(SELECTED_ITEMS_TYPE);
         this.controller.startSale();
-        this.controller.addRevenueObserver(new TotalRevenueView());
-        this.controller.addRevenueObserver(new TotalRevenueFileOutput());
         
         String identifier;
         CurrentSaleStatusDTO currentSaleStatus;
